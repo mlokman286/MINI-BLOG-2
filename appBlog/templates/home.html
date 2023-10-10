@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <main class="h-96">
+    <main class="h-96 ">
         <section class='my-10'>
             <div class='border-s-8 border-green-600'>
                 <h1 class='text-4xl  ms-5'>Home Page</h1>
@@ -13,8 +13,16 @@
                 {% for post in posts %}
                 <div class='card bg-white/50 text-White my-5'>
                     <div class='card-body'>
-                        <h1 class='text-2xl'>{{post.title}}</h1>
-                        <p>{{post.description}}</p>
+                        <div class="flex">
+                            <div class='w-44 p-5'>
+                                <img class='object-fill rounded-full' src="{{post.img.url}}" alt="">
+                                
+                            </div>
+                            <div class ='w-3/4'>
+                                <h1 class='text-2xl'>{{post.title}}</h1>
+                                <p>{{post.description}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}

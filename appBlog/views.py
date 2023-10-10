@@ -8,7 +8,7 @@ def home(request):
     posts = Post.objects.all()
     return render(request,"home.html",{'posts':posts})
 
-# ------Contact Page------
+# ------Contact Page------ 
 def contact(request):
     return render(request,"contact.html")
 
