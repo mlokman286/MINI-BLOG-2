@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block message %}
+    {% if messages %}
+        {% for msg in messages %}
+            <div {% if msg.tags %} class='alert alert-{{msg.tags}} alert-dismissible fade show' {% endif %}>
+                <strong>{{msg}}</strong>
+                <button type='button' class="close" data-dismiss="alert" area-label="Close">
+                    <span area-hidden='true'>&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock message %}
+{% block content %}
+    <main class="">
+        <section class='my-10'>
+            <div class='border-s-8 border-green-600'>
+                <h1 class='text-4xl  ms-5'>Dashboard Page</h1>
+            </div>
+            <div class='text-center'>
+                <a href="{% url 'addpost' %}" class="btn hover:btn-success text-xl btn-outline  mt-5 w-96">Add Post</a>
+            </div>
+        </section>
+        <section>
+            <div>
+                {% if posts %}
+                 <div class="px-20">
+                    <table class="table text-xl bg-white/50">
+                        <!-- head -->
+                        <thead>
+                        <tr class="text-xl text-base-300 bg-success ">
+                            <th class="w-1/12">ID</th>
+                            <th class="w-2/12">Title</th>
+                            <th class="w-7/12">Descriptions</th>
+                            <th class="w-2/12">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- table row  -->
+                        {% for post in posts %}
+                            <tr class="hover">
+                                <th>{{post.id}}</th>
+                                <td>{{post.title}}</td>
+                                <td>{{post.description}}</td>
+                                <td>
+                                    <a href="{% url 'updatepost' post.id %}"class="btn btn-outline btn-warning text-xl px-8">🖋</a>
+                                    <button class="btn btn-outline btn-error text-xl px-8">❌</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+{% endblock content %}

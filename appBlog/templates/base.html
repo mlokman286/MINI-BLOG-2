@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.2/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>    
+    
+</head>
+<body class="text-white">
+    <header class='container mx-auto'>
+        {% include "navbar.html" %}
+    </header>
+    <div class='container mx-auto'>
+        <div class="flex">
+            {% block message %}{% endblock message %}
+        </div>
+    </div>
+    <div class='container mx-auto'>
+        {% block content %}{% endblock content %}
+    </div>
+
+</body>
+</html>
