@@ -1,16 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block content %}
     <section class='my-10'>
             <div class='border-s-8 border-green-600'>
                 <h1 class='text-4xl  ms-5'>Dasboard / Add a Post</h1>
             </div>
             <div class='mt-10'>
-                <form action="" method="post" class=''>
+                <form action="" method="post" class='space-y-5' enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form.as_p}}
+
                     <input type="submit" value="ADD" class="btn btn-outline btn-success ">
                     <a href="{% url "dashboard" %}" class="btn btn-outline btn-error">Cancel</a>
+
+                    {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                        <p class="text-danger">{{error}}</p>
+                        {% endfor %}
+                    {% endif %}
                 </form>
                 
             </div>

@@ -14,7 +14,19 @@
     </header>
     <div class='container mx-auto'>
         <div class="flex">
-            {% block message %}{% endblock message %}
+            {% block message %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div {% if msg.tags %} class='alert alert-{{msg.tags}} alert-dismissible fade show' {% endif %}>
+                            <strong>{{msg}}</strong>
+                            <button type='button' class="close" data-dismiss="alert" area-label="Close">
+                                <span area-hidden='true'>&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endblock message %}
+            {% comment %} {% block message %}{% endblock message %} {% endcomment %}
         </div>
     </div>
     <div class='container mx-auto'>

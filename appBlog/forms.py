@@ -10,5 +10,5 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title':forms.TextInput(attrs={'class':'w-full'}),
             'description':forms.Textarea(attrs={'class':'w-full'}),
-            'img':forms.FileInput(attrs={'class':''}),
+            'img':forms.FileInput(attrs={'class':'file-input file-input-bordered file-input-success w-full'}),
         }

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main class="h-96">
+    <section class='my-10'>
+        <div class='border-s-8 border-green-600'>
+            <h1 class='text-4xl  ms-5'>Home / Post Informations</h1>
+        </div>
+        <div class='mt-20'>
+            <div class="card card-side bg-base-100 shadow-xl">
+                <figure><img src="{{post.img.url}}" alt="Movie"/></figure>
+                <div class="card-body">
+                    <h2 class="card-title">{{post.title}}</h2>
+                    <p>{{post.description}}</p>
+                    <div class="card-actions justify-end">
+                        <div>
+                            <p>{{post.time}} / {{post.date}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}

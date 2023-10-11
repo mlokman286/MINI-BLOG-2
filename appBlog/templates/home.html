@@ -8,7 +8,7 @@
             </div>
         </section>
         
-        <section>
+        <section> 
             <div class='mx-20'>
                 {% for post in posts %}
                 <div class='card bg-white/50 text-White my-5'>
@@ -21,6 +21,11 @@
                             <div class ='w-3/4'>
                                 <h1 class='text-2xl'>{{post.title}}</h1>
                                 <p>{{post.description}}</p>
+                                <div class='mt-6'>
+                                    <a class='btn' href="{% url "post" post.id %}">
+                                        Details
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
