@@ -9,13 +9,13 @@
             <li><a class="hover:shadow-xl p-1 rounded-lg hover:px-2" href="{% url 'home' %}">Home</a></li>
             <li><a class="hover:shadow-xl p-2 rounded-lg" href="{% url 'contact' %}">Contact</a></li>
             <li><a class="hover:shadow-xl p-2 rounded-lg" href="{% url 'about' %}">About Us</a></li>
-            {% comment %} {% if requets.user.authenticated %} {% endcomment %}
+            {% if request.user.is_authenticated %}
             <li><a class="hover:shadow-xl p-2 rounded-lg" href="{% url 'dashboard' %}">Dasboard</a></li>
             <li><a class="hover:shadow-xl p-2 rounded-lg" href="{% url 'logout' %}">Sign Out</a></li>
-            {% comment %} {% else %} {% endcomment %}
+            {% else %}
             <li><a class="hover:shadow-xl p-2 rounded-lg" href="{% url 'signup' %}">Sing Up</a></li>
             <li><a class="hover:shadow-xl p-2 rounded-lg" href="{% url 'login' %}">Sign In</a></li>
-            {% comment %} {% endif %} {% endcomment %}
+            {% endif %}
         </ul>
     </div>
     {% comment %} Menu End {% endcomment %}
@@ -31,7 +31,7 @@
       <label tabindex="0" class="btn btn-ghost btn-circle avatar">
         <div class="w-10 rounded-full">
             {% comment %} img field {% endcomment %}
-            <span class="text-3xl">😎</span>
+            <span class="text-3xl">{{request.user.get_full_name}}😎</span>
         </div>
       </label>
       <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">

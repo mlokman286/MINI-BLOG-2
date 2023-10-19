@@ -13,5 +13,5 @@ urlpatterns = [
     path('delete/<int:id>',views.deletePost,name='delete'),
     path('signup',views.signupPage,name='signup'),
     path('login',views.loginPage,name='login'),
-    path('logout',views.logout,name='logout'),
+    path('logout',views.logout_page,name='logout'),
 ]

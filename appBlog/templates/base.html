@@ -13,11 +13,11 @@
         {% include "navbar.html" %}
     </header>
     <div class='container mx-auto'>
-        <div class="flex">
+        <div class="flex mt-10">
             {% block message %}
                 {% if messages %}
                     {% for msg in messages %}
-                        <div {% if msg.tags %} class='alert alert-{{msg.tags}} alert-dismissible fade show' {% endif %}>
+                        <div {% if msg.tags %} class="alert alert-{{msg.tags}} alert-dismissible fade show" {% endif %}>
                             <strong>{{msg}}</strong>
                             <button type='button' class="close" data-dismiss="alert" area-label="Close">
                                 <span area-hidden='true'>&times;</span>

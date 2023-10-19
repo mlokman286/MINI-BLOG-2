@@ -1,7 +1,9 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from .forms import PostForm
+from .forms import LoginForm, PostForm, SingupForm
 from .models import Post
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
 
 # ------HOME Page------
 def home(request):
@@ -58,12 +60,46 @@ def about(request):
 
 # ------Sign Up Page------
 def signupPage(request):
-    return render(request,"signup.html")
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            form=SingupForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request,'Congrates🎉🎉You have succesfully become a Author')
+                return redirect('login')
+            else:
+                messages.error(request,'There is a invalid fields')
+                return redirect('signup')
+        else:
+            form = SingupForm()
+            return render(request,"signup.html",{'form':form})
+    else:
+        return redirect('home')
 
 # ------Log In Page------
 def loginPage(request):
-    return render(request,"login.html")
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            form = LoginForm(request=request,data=request.POST)
+            if form.is_valid():
+                uname = form.cleaned_data['username']
+                upass = form.cleaned_data['password']
+                user = authenticate(username=uname,password=upass)
+                if user:
+                    login(request,user)
+                    name =user.first_name +' '+ user.last_name
+                    print(name)
+                    messages.success(request,"Welcome MR {}".format(name))
+                    return redirect('home')
+            else:
+                messages.error(request,'Invalid username or password')
+                return redirect('login')
+        form = LoginForm()
+        return render(request,"login.html",{'form':form})
+    else:
+        return redirect('home')
 
 # ------Log out Function------
-def logout(request):
-        pass
+def logout_page(request):
+    logout(request)
+    return redirect('login')
